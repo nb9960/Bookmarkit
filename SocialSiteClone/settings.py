@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'django_extensions',
+    'images',
 ]
 
 MIDDLEWARE = [
@@ -136,8 +137,14 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'account.authentication.EmailAuthBackend',
     'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
 ]
 
 SOCIAL_AUTH_FACEBOOK_KEY='927750291051711'
 SOCIAL_AUTH_FACEBOOK_SECRET='3702950f5cb88ce44a31b4b8501027d3'
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_TWITTER_KEY = 'bqK23tAeJePKpru56GZ610pIS' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = 'bhfGVCx6ZbupYHGikAt7Wf3RDJNp5P2OJcflBZNyNVUiS3dBvY' # Twitter API Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '45338602854-5048k4l4q0n72g3rpbsi20ejbgso174p.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'L9HF3C2y32C6a57Kv-8eNa0O' # Google Consumer Secret
