@@ -1,0 +1,26 @@
+The Transport Layer Security (TLS) protocol is the standard for serving websites through a secure connection. The TLS predecessor is the Secure Sockets Layer (SSL).    
+Although SSL is now deprecated, in multiple libraries and online documentation you will find references to both the terms TLS and SSL. 
+The Django development server is not able to serve your site through HTTPS, since that is not its intended use. In order to test the social authentication functionality serving your site through HTTPS, you are going to use the RunServerPlus extension of the package Django Extensions. 
+Django Extensions is a third-party collection of custom extensions for Django. Please note that this is never the method you should use to serve your site in a real environment; this is a development server.    
+Use the following command to install Django Extensions:
+pip install django-extensions==2.2.5
+
+Now you need to install Werkzeug, which contains a debugger layer required by the RunServerPlus extension. Use the following command to install it:
+
+pip install werkzeug==0.16.0
+
+Finally, use the following command to install pyOpenSSL, which is required to use the SSL/TLS functionality of RunServerPlus:
+
+pip install pyOpenSSL==19.0.0
+
+Edit the settings.py file of your project and add Django Extensions to the INSTALLED_APPS setting, as follows:
+
+INSTALLED_APPS = [
+    # ...
+    'django_extensions',
+]
+
+Use the management command runserver_plus provided by Django Extensions to run the development server, as follows:
+
+python manage.py runserver_plus --cert-file cert.crt
+

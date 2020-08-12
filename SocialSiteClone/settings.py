@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'social_django',
+    'social_django', 
+    # use pip3 install social-app-auth-django
     'django_extensions',
     'images',
 ]
