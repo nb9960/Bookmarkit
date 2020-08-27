@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 To run your development server using an auto-generated SSL/TLS certificate, you will use RunServerPlus from Django Extensions
 
+=======
+>>>>>>> ee48f05ab9280e740225c4db22159baa7feafcc9
 The Transport Layer Security (TLS) protocol is the standard for serving websites through a secure connection. The TLS predecessor is the Secure Sockets Layer (SSL).    
 Although SSL is now deprecated, in multiple libraries and online documentation you will find references to both the terms TLS and SSL. 
 The Django development server is not able to serve your site through HTTPS, since that is not its intended use. In order to test the social authentication functionality serving your site through HTTPS, you are going to use the RunServerPlus extension of the package Django Extensions. 
@@ -24,4 +27,9 @@ INSTALLED_APPS = [
 
 Use the management command runserver_plus provided by Django Extensions to run the development server, as follows:
 
+<<<<<<< HEAD
 python manage.py runserver_plus --cert-file cert.crt
+=======
+python manage.py runserver_plus --cert-file cert.crt
+
+>>>>>>> ee48f05ab9280e740225c4db22159baa7feafcc9

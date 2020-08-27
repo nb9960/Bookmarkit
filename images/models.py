@@ -16,8 +16,13 @@ class Image(models.Model):
     users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,
                                     related_name='images_liked',
                                     blank=True)
+<<<<<<< HEAD
     
     # many-to-many relationship in this case because a user might like multiple images and each image can be liked by multiple users.                             
+=======
+    # many-to-many relationship in this case because a user might like multiple images and each image can be liked by multiple users.
+                                    
+>>>>>>> ee48f05ab9280e740225c4db22159baa7feafcc9
     def __str__(self):
         return self.title
 
