@@ -3,10 +3,6 @@ from .models import Image
 from urllib import request
 from django.core.files.base import ContentFile
 from django.utils.text import slugify
-<<<<<<< HEAD
-
-=======
->>>>>>> ee48f05ab9280e740225c4db22159baa7feafcc9
 class ImageCreateForm(forms.ModelForm):
     class Meta:
         model = Image
@@ -16,7 +12,6 @@ class ImageCreateForm(forms.ModelForm):
         }
 
     def clean_url(self):
-<<<<<<< HEAD
       url = self.cleaned_data['url']
       valid_extensions = ['jpg', 'jpeg']
       extension = url.rsplit('.', 1)[1].lower()
@@ -28,19 +23,6 @@ class ImageCreateForm(forms.ModelForm):
     def save(self, force_insert=False,
                force_update=False,
                commit=True):
-=======
-        url = self.cleaned_data['url']
-        valid_extensions = ['jpg', 'jpeg']
-        extension = url.rsplit('.', 1)[1].lower()
-        if extension not in valid_extensions:
-            raise forms.ValidationError('The given URL does not ' \
-                                        'match valid image extensions.')
-        return url
-
-    def save(self, force_insert=False,
-                force_update=False,
-                commit=True):
->>>>>>> ee48f05ab9280e740225c4db22159baa7feafcc9
         image = super().save(commit=False)
         image_url = self.cleaned_data['url']
         name = slugify(image.title)
@@ -55,7 +37,6 @@ class ImageCreateForm(forms.ModelForm):
             image.save()
         return image
 
-<<<<<<< HEAD
 # use the Python urllib module to download the image and then call the save() method of the image field, 
 # passing it a ContentFile object that is instantiated with the downloaded file content.
 # pass the save=False parameter to avoid saving the object to the database yet.
@@ -74,8 +55,3 @@ class ImageCreateForm(forms.ModelForm):
 # WE override the default widget of the url field to use a HiddenInput widget.
 # This widget is rendered as an HTML input element with a type="hidden" attribute. 
 # We use this widget because you don't want this field to be visible to users.
-=======
-# use the Python urllib module to download the image and then call the save() method of the image field, passing it a ContentFile object that is instantiated with the downloaded file content. In this way, you save the file to the media directory of your project. You pass the save=False parameter to avoid saving the object to the database yet.
-# In order to use the urllib to retrieve images from URLs served through HTTPS, you need to install the Certifi Python package. Certifi is a collection of root certificates for validating the trustworthiness of SSL/TLS certificates.    Install certifi with the following command:
-# pip3 install --upgrade certifi
->>>>>>> ee48f05ab9280e740225c4db22159baa7feafcc9
