@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # use pip3 install social-app-auth-django
     'django_extensions',
     'images',
+    'easy_thumbnails',
 ]
 
 MIDDLEWARE = [
