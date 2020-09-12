@@ -34,7 +34,8 @@ class Contact(models.Model):
   created = models.DateTimeField(auto_now_add=True,  
                                   db_index=True)    
   class Meta:        
-    ordering = ('-created',)    
+    ordering = ('-created',)
+        
   def __str__(self):        
     return f'{self.user_from} follows {self.user_to}'
 
