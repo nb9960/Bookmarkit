@@ -11,7 +11,7 @@ from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
 from .models import Contact
 from actions.utils import create_action
-from action.models import Action
+from actions.models import Action
 
 @ajax_required
 @require_POST
