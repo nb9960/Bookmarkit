@@ -10,6 +10,9 @@ from django.contrib.auth.models import User
 from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
 from .models import Contact
+from actions.utils import create_action
+from action.models import Action
+
 @ajax_required
 @require_POST
 @login_required
@@ -20,9 +23,9 @@ def user_follow(request):
         try:
             user = User.objects.get(id=user_id)
             if action == 'follow':
-                Contact.objects.get_or_create(
-                    user_from=request.user,
-                    user_to=user)
+                Contact.objects.get_or_create(user_from=request.user,
+                                              user_to=user)
+                create_action(request.user, 'is following', user)
             else:
                 Contact.objects.filter(user_from=request.user,
                                        user_to=user).delete()
@@ -51,9 +54,23 @@ def user_detail(request, username):
 
 @login_required
 def dashboard(request):
+    # Display all actions by default
+    actions = Action.objects.exclude(user=request.user)
+    following_ids = request.user.following.values_list('id',
+                                                       flat=True)
+    if following_ids:
+        # If user is following others, retrieve only their actions
+        actions = actions.filter(user_id__in=following_ids)
+    actions = actions.select_related('user', 'user__profile')\
+                      .prefetch_related('target')[:10]
+    # select_related() allows you to retrieve related objects for one-to-many relationships.
+    # This translates to a single, more complex QuerySet, but you avoid additional queries when accessing the related objects. 
+    # The select_related method is for ForeignKey and OneToOne fields and not for ManyToMany or ManyToOne.
+    # Prefetch_related is used in this case it performs a separate lookup for each relationship and joins the result. 
     return render(request,
                   'account/dashboard.html',
-                  {'section': 'dashboard'})
+                  {'section': 'dashboard',
+                  'actions':actions})
 
 def user_login(request):
     if request.method == 'POST':
@@ -89,6 +106,7 @@ def register(request):
             new_user.save()
             # Create the user profile
             Profile.objects.create(user=new_user)
+            create_action(new_user, 'has created an account')
             return render(request,
                           'account/register_done.html',
                           {'new_user': new_user})

@@ -9,6 +9,8 @@ from common.decorators import ajax_required
 from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, \
                                   PageNotAnInteger
+from actions.utils import create_action
+
 # this view will handle both AJAX requests and standard requests
 @login_required
 def image_list(request):
@@ -51,6 +53,7 @@ def image_create(request):
             # assign current user to the item
             new_item.user = request.user
             new_item.save()
+            create_action(request.user,'bookmarked image',new_item)
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
             return redirect(new_item.get_absolute_url())
@@ -81,6 +84,7 @@ def image_like(request):
             image = Image.objects.get(id=image_id)
             if action == 'like':
                 image.users_like.add(request.user)
+                create_action(request.user,'like',image)
             else:
                 image.users_like.remove(request.user)
             return JsonResponse({'status':'ok'})
