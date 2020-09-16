@@ -153,6 +153,10 @@ SOCIAL_AUTH_TWITTER_SECRET = 'bhfGVCx6ZbupYHGikAt7Wf3RDJNp5P2OJcflBZNyNVUiS3dBvY
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '45338602854-5048k4l4q0n72g3rpbsi20ejbgso174p.apps.googleusercontent.com' # Google Consumer Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'L9HF3C2y32C6a57Kv-8eNa0O' # Google Consumer Secret
 THUMBNAIL_DEBUG=True
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
+
 
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail',
