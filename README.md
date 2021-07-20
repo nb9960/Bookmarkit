@@ -1,3 +1,7 @@
 # Bookmarklet
-A bookmarklet app by which you can bookmark any image from any website. You can also follow others and like their content. User can login using facebook, gmail or twitter.
-Activities of users which they follow can be viewed in dashboard and you can also view the list of people who have liked your content.
+An online image sharing platform to interact with each other by sharing content (basically images) that they find on internet. This project includes:
+- An authentication system for users to login, register, edit their profile & change/reset password
+- A follow system to allow users to follow each other
+- Functionality to display shared images and implement a bookmarklet for users to share images from any website
+- An activity stream that allows user to see the content uploaded by the people they follow
+- Redis to get the views on shared content 
